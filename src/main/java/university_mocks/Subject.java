@@ -7,9 +7,14 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class Subjects {
+public class Subject {
     private String nameOfSubject;
     private List<Researcher> researchersWhoTeachTheSubjects;
     private int ECTS_PointsForSubject;
 
+//    List<Subjects> listOfSubjects(){
+//        List<Subjects> listOfSubjects = new ArrayList<>();
+//        listOfSubjects.add()
+//    }
+//    Subjects sub = new Subjects();
 }

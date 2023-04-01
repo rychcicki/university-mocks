@@ -2,58 +2,76 @@ package university_mocks;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
-//@NoArgsConstructor
 @AllArgsConstructor
 public class Researcher extends Employee {
     private String degree;
     private List<String> subjectsTaught;
 
-    private enum Status {
-        PHD_STUDENT, RESEARCHER, PROFESSOR
+//    public Researcher(String firstName, String lastName, String address, String phD, List<String> subjectsTaught) {
+//    }
+
+
+    public Researcher(String firstName, String lastName, String address, String degree, List<String> subjectsTaught) {
+        super(firstName, lastName, address);
+        this.degree = degree;
+        this.subjectsTaught = subjectsTaught;
+
+//        double random = Math.random();
+//        int random2 = (int) (Math.random() * 50 + 1);
+        /**
+         *         Random rand = new Random();
+         *         rand.nextInt(subjectsTaught.size());
+         */
     }
 
-    public boolean checkResearcherMayBeFired(Researcher researcher, Subjects subjects) {
+    public boolean checkResearcherMayBeFired(@NonNull Researcher researcher, Subject subject) {
         Researcher anotherResearcher = null;
-        if (researcher != null && researcher.getSubjectsTaught().size() > 0) {
-            anotherResearcher = replaceResearcherByAnotherResearcher(researcher, subjects);
+        if (researcher.getSubjectsTaught().size() > 0) {
+            anotherResearcher = replaceResearcherByAnotherResearcher(researcher, subject);
+            // other methods
         }
         return anotherResearcher != null;
     }
 
     // doesn't replace, just return another Researcher
-    public Researcher replaceResearcherByAnotherResearcher(Researcher researcher, Subjects subjects) {
-        if (subjects.getResearchersWhoTeachTheSubjects().contains(researcher) &&
-                subjects.getResearchersWhoTeachTheSubjects().size() > 1) {
-            subjects.getResearchersWhoTeachTheSubjects().remove(researcher);
+    public Researcher replaceResearcherByAnotherResearcher(Researcher researcher, Subject subject) {
+        if (subject.getResearchersWhoTeachTheSubjects().contains(researcher) &&
+                subject.getResearchersWhoTeachTheSubjects().size() > 1) {
+            subject.getResearchersWhoTeachTheSubjects().remove(researcher);
         }
-        return subjects.getResearchersWhoTeachTheSubjects()
-                .get(Researcher.pseudoRandomInt(subjects.getResearchersWhoTeachTheSubjects()));
+        return subject.getResearchersWhoTeachTheSubjects()
+                .get(Researcher.pseudoRandomInt(subject.getResearchersWhoTeachTheSubjects()));
     }
 
-    public boolean deleteResearcherFromStaff(Researcher researcher, List<Researcher> staff) {
-        boolean remove = false;
+    public List<Researcher> deleteResearcherFromStaffAndSetFalseAsEmployee(Researcher researcher, List<Researcher> staff) {
         if (staff.contains(researcher)) {
-            remove = staff.remove(researcher);
+            staff.remove(researcher);
+            researcher.setIsEmployed(false);
         }
-        return remove;
+        return staff;
     }
 
-    public boolean checkFlagOfEmployee(Researcher researcher) {
-        // Employee employee = new Employee();
-//        if (researcher.getFirstName().equals()){
-//
-//        }
-        return false;
+    public List<Researcher> deleteResearcherFromFaculty(@NonNull Researcher researcher, Faculty faculty) {
+        List<Researcher> staff = faculty.getStaff();
+        staff.remove(researcher);
+        return staff;
     }
+
+
+//    public boolean checkFlagOfEmployee(Employee employee) {
+//        // Employee researcherEmployee = new Researcher("PhD",new ArrayList<String>());
+//        return employee.isEmployed();
+//    }
 
 
     // czy tutaj dopuszczalne jest użycie raw type of List?
-    public static int pseudoRandomInt(List list) {
+    public static int pseudoRandomInt(List<Researcher> list) {
         return ThreadLocalRandom.current().nextInt(0, list.size() - 1);
     }
 }

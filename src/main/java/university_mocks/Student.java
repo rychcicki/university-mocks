@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 @Getter
-//@NoArgsConstructor
 @AllArgsConstructor
 public class Student {
     private String firstName;
