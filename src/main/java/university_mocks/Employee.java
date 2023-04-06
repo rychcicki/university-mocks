@@ -3,6 +3,7 @@ package university_mocks;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -16,6 +17,7 @@ public class Employee {
     private double salary;
     private JobPosition jobPosition;
     private LocalDate dateOfEmployment;
+    @Setter
     private boolean isEmployed;
 
     public Employee(String firstName, String lastName, String address) {
@@ -23,10 +25,4 @@ public class Employee {
         this.lastName = lastName;
         this.address = address;
     }
-
-    void setIsEmployed(boolean isEmployed) {
-        this.isEmployed = isEmployed;
-    }
-
-
 }

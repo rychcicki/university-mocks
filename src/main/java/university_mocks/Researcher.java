@@ -13,9 +13,6 @@ public class Researcher extends Employee {
     private String degree;
     private List<String> subjectsTaught;
 
-//    public Researcher(String firstName, String lastName, String address, String phD, List<String> subjectsTaught) {
-//    }
-
 
     public Researcher(String firstName, String lastName, String address, String degree, List<String> subjectsTaught) {
         super(firstName, lastName, address);
@@ -52,7 +49,7 @@ public class Researcher extends Employee {
     public List<Researcher> deleteResearcherFromStaffAndSetFalseAsEmployee(Researcher researcher, List<Researcher> staff) {
         if (staff.contains(researcher)) {
             staff.remove(researcher);
-            researcher.setIsEmployed(false);
+            researcher.setEmployed(false);
         }
         return staff;
     }

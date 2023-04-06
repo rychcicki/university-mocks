@@ -4,5 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum JobPosition {
-    PHD_STUDENT, RESEARCHER, PROFESSOR, OTHER
+    PHD_STUDENT,
+    RESEARCHER,
+    PROFESSOR,
+    OTHER
 }
