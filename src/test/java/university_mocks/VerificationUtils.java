@@ -3,6 +3,7 @@ package university_mocks;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class VerificationUtils {
     public static List<Employee> buildListOfEmployees() {
@@ -34,7 +35,7 @@ public class VerificationUtils {
         return new Employee(firstName, lastName, address, salary, jobPosition, LocalDate.now(), true);
     }
 
-    List<String> subjects = List.of("Statistics", "Algebra", "Algorithms", "Economics", "Mathematics for Computer Science", "Data Analysis",
+    private final List<String> subjects = List.of("Statistics", "Algebra", "Algorithms", "Economics", "Mathematics for Computer Science", "Data Analysis",
             "Programming", "Software Engineering", "Modelling", "Network Technologies");
 
     public static List<Researcher> buildListOfResearchers() {
@@ -63,23 +64,17 @@ public class VerificationUtils {
         return new Researcher(employee.getFirstName(), employee.getLastName(), employee.getAddress(), "PhD", subjectsTaught);
     }
 
-    public static List<Researcher> buildListOfResearchersFromEmployees(List<Employee> listOfEmployees, List<String> subjects) {
-        List<Researcher> listOfResearchers = new ArrayList<>();
-        for (int i = 0; i < listOfEmployees.size(); i++) {
-            listOfResearchers.add(buildResearcherFromEmployee(listOfEmployees.get(i), subjects));
-        }
-        return listOfResearchers;
+    public static List<Researcher> buildListOfResearchersFromEmployees(List<Employee> listOfEmployees, List<String> listOfSubjects) {
+        return listOfEmployees.stream()
+                .map(employee -> buildResearcherFromEmployee(employee, listOfSubjects))
+                .collect(Collectors.toList());
     }
 
     public static Faculty buildFacultyOfMathematics(String address) {
         String name = "Faculty of Mathematic";
         List<String> studyCourses = List.of("Algebra", "Algorithms", "Mathematics for Computer Science", "Data Analysis");
 
-        List<Researcher> staff = new ArrayList<>();
-        staff.add(buildListOfResearchers().get(0));
-        staff.add(buildListOfResearchers().get(1));
-        staff.add(buildListOfResearchers().get(2));
-
+        List<Researcher> staff = new ArrayList<>(buildListOfResearchers());
         return new Faculty(name, studyCourses, address, staff);
     }
 
