@@ -14,13 +14,11 @@ public class Course {
     private Map<Integer, String> yearsAndSubjects;
     private Map<String, List<String>> subjectsAndStaff;
 
-
-    public void temp() {
+    public void createMapOfYearsAndSubjects() {
         Map<Integer, String> yearsAndSubjects = new HashMap<>();
         yearsAndSubjects.put(1, "Algebra");
         yearsAndSubjects.put(2, "Statistics");
         yearsAndSubjects.put(3, "Algorithms");
         yearsAndSubjects.put(4, "Data Analysis");
     }
-
 }

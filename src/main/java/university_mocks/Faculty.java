@@ -12,5 +12,4 @@ public class Faculty {
     private List<String> studyCourses;
     private String address;
     private List<Researcher> staff;
-
 }
