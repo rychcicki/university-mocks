@@ -13,18 +13,10 @@ public class Researcher extends Employee {
     private String degree;
     private List<String> subjectsTaught;
 
-
     public Researcher(String firstName, String lastName, String address, String degree, List<String> subjectsTaught) {
         super(firstName, lastName, address);
         this.degree = degree;
         this.subjectsTaught = subjectsTaught;
-
-//        double random = Math.random();
-//        int random2 = (int) (Math.random() * 50 + 1);
-        /**
-         *         Random rand = new Random();
-         *         rand.nextInt(subjectsTaught.size());
-         */
     }
 
     public boolean checkResearcherMayBeFired(@NonNull Researcher researcher, Subject subject) {
@@ -60,14 +52,6 @@ public class Researcher extends Employee {
         return staff;
     }
 
-
-//    public boolean checkFlagOfEmployee(Employee employee) {
-//        // Employee researcherEmployee = new Researcher("PhD",new ArrayList<String>());
-//        return employee.isEmployed();
-//    }
-
-
-    // czy tutaj dopuszczalne jest użycie raw type of List?
     public static int pseudoRandomInt(List<Researcher> list) {
         return ThreadLocalRandom.current().nextInt(0, list.size() - 1);
     }
