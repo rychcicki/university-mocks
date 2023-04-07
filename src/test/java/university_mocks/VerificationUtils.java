@@ -39,25 +39,15 @@ public class VerificationUtils {
             "Programming", "Software Engineering", "Modelling", "Network Technologies");
 
     public static List<Researcher> buildListOfResearchers() {
-        List<String> subjectsTaught1 = new ArrayList<>();
-        List<String> subjectsTaught2 = new ArrayList<>();
-        List<String> subjectsTaught3 = new ArrayList<>();
-        subjectsTaught1.add("Statistics");
-        subjectsTaught1.add("Algebra");
-        subjectsTaught2.add("Algebra");
-        subjectsTaught2.add("Algorithms");
-        subjectsTaught3.add("Economics");
-        subjectsTaught3.add("Data Analysis");
+        List<String> subjectsTaught1 = new ArrayList<>(List.of("Statistics", "Algebra"));
+        List<String> subjectsTaught2 = new ArrayList<>(List.of("Algebra", "Algorithms"));
+        List<String> subjectsTaught3 = new ArrayList<>(List.of("Economics", "Data Analysis"));
 
         List<Employee> employees = buildListOfEmployees();
         Researcher researcher1 = buildResearcherFromEmployee(employees.get(1), subjectsTaught1);
         Researcher researcher2 = buildResearcherFromEmployee(employees.get(2), subjectsTaught2);
         Researcher researcher3 = buildResearcherFromEmployee(employees.get(4), subjectsTaught3);
-        List<Researcher> listOfResearchers = new ArrayList<>();
-        listOfResearchers.add(researcher1);
-        listOfResearchers.add(researcher2);
-        listOfResearchers.add(researcher3);
-        return listOfResearchers;
+        return new ArrayList<>(List.of(researcher1, researcher2, researcher3));
     }
 
     private static Researcher buildResearcherFromEmployee(Employee employee, List<String> subjectsTaught) {
@@ -77,5 +67,4 @@ public class VerificationUtils {
         List<Researcher> staff = new ArrayList<>(buildListOfResearchers());
         return new Faculty(name, studyCourses, address, staff);
     }
-
 }

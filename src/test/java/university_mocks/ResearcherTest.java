@@ -11,11 +11,8 @@ class ResearcherTest {
     public void shouldReturnListOfTaughtSubjects() {
         //given
         Researcher researcher = VerificationUtils.buildListOfResearchers().get(1);
-
-
         //when
 //        List<String> subjectsTaughtCheck = researcher.listOfTaughtSubjectsVerifier(researcher);
-
         //then
 //        Assertions.assertEquals(List.of("Law"), subjectsTaughtCheck);
     }
@@ -29,15 +26,11 @@ class ResearcherTest {
         List<Researcher> staff = new ArrayList<>();
         staff.add(researcher1);
         staff.add(researcher2);
-
-
         //when - act
         boolean checkSubjects = researcher1.checkResearcherMayBeFired(researcher1, subject);
         List<Researcher> listOfResearchers = researcher1.deleteResearcherFromStaffAndSetFalseAsEmployee(researcher1, staff);
         boolean containsDeletedResearcher = listOfResearchers.contains(researcher1);
         boolean employed = researcher1.isEmployed();
-
-
         //then - assert
         Assertions.assertTrue(checkSubjects);
         Assertions.assertFalse(containsDeletedResearcher);
@@ -49,11 +42,8 @@ class ResearcherTest {
         //given
         Researcher researcher = VerificationUtils.buildListOfResearchers().get(0);
         Subject subject = buildSubjects();
-
         //when
         Researcher anotherResearcher = researcher.replaceResearcherByAnotherResearcher(researcher, subject);
-
-
         //then
         Assertions.assertNotNull(anotherResearcher);
 
@@ -69,10 +59,8 @@ class ResearcherTest {
         Researcher researcher = buildResearcherFromEmployee(employee, subjectsForResearcher);
         Faculty faculty = VerificationUtils.buildFacultyOfMathematics("Warszawa");
         List<Researcher> staff = faculty.getStaff();
-
         //when
         List<Researcher> researchers = researcher.deleteResearcherFromFaculty(researcher, faculty);
-
         //then
         Assertions.assertEquals(staff, researchers);
     }
@@ -92,14 +80,12 @@ class ResearcherTest {
         return new Researcher(employee.getFirstName(), employee.getLastName(), employee.getAddress(), "PhD", subjectsTaught);
     }
 
-
 //    private Researcher buildResearcherFromEmployee(Employee employee, List<String> subjectsTaught) {
 //        subjectsTaught.add("statistics");
 //        subjectsTaught.add("algebra");
 //        subjectsTaught.add("hydrology");
 //        return new Researcher(employee.getFirstName(),employee.getLastName(),employee.getAddress(),"PhD",subjectsTaught);
 //    }
-
 
     private Subject buildSubjects() {
         List<Researcher> researchersWhoTeachTheSubjects = new ArrayList<>();
@@ -112,5 +98,4 @@ class ResearcherTest {
 //        List<String>
 //
 //    }
-
 }
