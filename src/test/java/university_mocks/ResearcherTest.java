@@ -32,9 +32,7 @@ class ResearcherTest {
         boolean containsDeletedResearcher = listOfResearchers.contains(researcher1);
         boolean employed = researcher1.isEmployed();
         //then - assert
-        Assertions.assertTrue(checkSubjects);
-        Assertions.assertFalse(containsDeletedResearcher);
-//        Assertions.assertAll();
+        Assertions.assertAll(() -> Assertions.assertTrue(checkSubjects), () -> Assertions.assertFalse(containsDeletedResearcher));
     }
 
     @Test
@@ -46,7 +44,6 @@ class ResearcherTest {
         Researcher anotherResearcher = researcher.replaceResearcherByAnotherResearcher(researcher, subject);
         //then
         Assertions.assertNotNull(anotherResearcher);
-
     }
 
     @Test
@@ -93,9 +90,4 @@ class ResearcherTest {
         researchersWhoTeachTheSubjects.add(VerificationUtils.buildListOfResearchers().get(1));
         return new Subject("Algebra", researchersWhoTeachTheSubjects, 5);
     }
-
-//    private List<String> subjects(){
-//        List<String>
-//
-//    }
 }
