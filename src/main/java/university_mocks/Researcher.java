@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 @Getter
 @AllArgsConstructor
@@ -35,7 +35,7 @@ public class Researcher extends Employee {
             subject.getResearchersWhoTeachTheSubjects().remove(researcher);
         }
         return subject.getResearchersWhoTeachTheSubjects()
-                .get(Researcher.pseudoRandomInt(subject.getResearchersWhoTeachTheSubjects()));
+                .get(new Random().nextInt(0, subject.getResearchersWhoTeachTheSubjects().size()));
     }
 
     public List<Researcher> deleteResearcherFromStaffAndSetFalseAsEmployee(Researcher researcher, List<Researcher> staff) {
@@ -50,9 +50,5 @@ public class Researcher extends Employee {
         List<Researcher> staff = faculty.getStaff();
         staff.remove(researcher);
         return staff;
-    }
-
-    public static int pseudoRandomInt(List<Researcher> list) {
-        return ThreadLocalRandom.current().nextInt(0, list.size() - 1);
     }
 }
