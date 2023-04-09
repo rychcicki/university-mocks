@@ -1,20 +1,22 @@
 package university_mocks;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
 import java.util.List;
 import java.util.Random;
 
 @Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class Researcher extends Employee {
     private String degree;
     private List<String> subjectsTaught;
 
     public Researcher(String firstName, String lastName, String address, String degree, List<String> subjectsTaught) {
-        super(firstName, lastName, address);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
         this.degree = degree;
         this.subjectsTaught = subjectsTaught;
     }

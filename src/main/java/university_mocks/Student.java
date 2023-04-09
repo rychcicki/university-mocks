@@ -1,7 +1,9 @@
 package university_mocks;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,11 +12,10 @@ import java.util.Map;
 import java.util.Random;
 
 @Getter
-@AllArgsConstructor
-public class Student {
-    private String firstName;
-    private String lastName;
-    private String address;
+@Setter
+@NoArgsConstructor
+@ToString
+public class Student extends Person {
     private int indexNumber;
     private String course;
     private int year;
@@ -22,10 +23,28 @@ public class Student {
     private Map<String, Double> subjectsAndGrades;
     private List<String> subjectsForConditionalExam;
 
+    public Student(String firstName, String lastName, String address, int indexNumber, String course, int year, int semester,
+                   Map<String, Double> subjectsAndGrades, List<String> subjectsForConditionalExam) {
+        super(firstName, lastName, address);
+        this.indexNumber = indexNumber;
+        this.course = course;
+        this.year = year;
+        this.semester = semester;
+        this.subjectsAndGrades = subjectsAndGrades;
+        this.subjectsForConditionalExam = subjectsForConditionalExam;
+    }
+
     public Employee studentToEmployeePromotion(Student student) {
         //similar to buildEmployee() in VerificationUtils class;
-        return new Employee(student.getFirstName(), student.getLastName(), student.getAddress(), 3500,
-                JobPosition.PHD_STUDENT, LocalDate.now(), true);
+        Employee employee = new Employee();
+        employee.setFirstName(student.getFirstName());
+        employee.setLastName(student.getLastName());
+        employee.setAddress(student.getAddress());
+        employee.setSalary(3800);
+        employee.setJobPosition(JobPosition.PHD_STUDENT);
+        employee.setDateOfEmployment(LocalDate.now());
+        employee.setEmployed(true);
+        return employee;
     }
 
     public Researcher studentToPhDStudentPromotion(Employee employee, List<String> subjectsTaught) {
