@@ -3,23 +3,19 @@ package university_mocks;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.List;
+
+import static university_mocks.StudentVerificationUtils.finalListOfStudents;
+import static university_mocks.StudentVerificationUtils.makeListOfSubjects;
 
 class StudentTest {
-    // public final Student student = new Student();
+    List<Student> listOfStudents = finalListOfStudents;
 
     @Test
     public void shouldReturnFalseWhenStudentIsFired() {
         //given
-        Map<String, Double> subjectsAndGrades = new HashMap<>();
-        subjectsAndGrades.put("Statistics", 4.5);
-        List<String> threeSubjectsForConditionalExam = new ArrayList<>(List.of("Statistics", "Algebra", "Algorithms"));
-        List<String> fourSubjectsForConditionalExam = new ArrayList<>(List.of("Statistics", "Algebra", "Algorithms", "Economics"));
-        Student student1 = buildStudent(subjectsAndGrades, threeSubjectsForConditionalExam);
-        Student student2 = buildStudent2(subjectsAndGrades, fourSubjectsForConditionalExam);
-        List<Student> listOfStudents = new ArrayList<>();
-        listOfStudents.add(student1);
-        listOfStudents.add(student2);
+        Student student1 = listOfStudents.get(0);
+        Student student2 = listOfStudents.get(1);
         //when
         List<Student> students1 = student1.checkSubjectsForConditionalExam(listOfStudents, student1);
         List<Student> students2 = student2.checkSubjectsForConditionalExam(listOfStudents, student2);
@@ -29,38 +25,20 @@ class StudentTest {
         Assertions.assertTrue(check1);
         Assertions.assertFalse(check2);
     }
-//
-//    @Test
-//    public void shouldReturnTrueWhenFired2() {
-//        //given
 
-    //        //when
-//        Student check = student.checkIfStudentIsFired(student.getSubjectsForConditionalExam());
-//
-//        //then
-//        Assertions.assertNull(check);
-//    }
     @Test
     public void shouldReturnValidResearcherWhenStudentPromotedToPhDStudent() {
         //given
-        Map<String, Double> subjectsAndGrades = new HashMap<>();
-        subjectsAndGrades.put("Statistics", 4.5);
-        List<String> subjectsForConditionalExam = Collections.emptyList();
-        Student student = buildStudent(subjectsAndGrades, subjectsForConditionalExam);
-        List<String> subjectsTaught = new ArrayList<>(List.of("Statistics", "Algebra"));
+        Student student = listOfStudents.get(0);
+        List<String> subjectsTaught = makeListOfSubjects();
         //when
         Employee employee = student.studentToEmployeePromotion(student);
         Researcher researcher = student.studentToPhDStudentPromotion(employee, subjectsTaught);
         JobPosition jobPosition = employee.getJobPosition();
         //then
-        Assertions.assertAll(() -> Assertions.assertEquals(JobPosition.PHD_STUDENT, jobPosition), () -> Assertions.assertEquals(employee.getLastName(), researcher.getLastName()), () -> Assertions.assertTrue(subjectsTaught.contains(researcher.getSubjectsTaught().get(0))));
-    }
-
-    private Student buildStudent(Map<String, Double> subjectsAndGrades, List<String> subjectsForConditionalExam) {
-        return new Student("Marcin", "Kowalski", "Vienna", 123, "Law", 2, 3, subjectsAndGrades, subjectsForConditionalExam);
-    }
-
-    private Student buildStudent2(Map<String, Double> subjectsAndGrades, List<String> subjectsForConditionalExam) {
-        return new Student("Adam", "Nowak", "Warszawa", 158, "Math", 3, 5, subjectsAndGrades, subjectsForConditionalExam);
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(JobPosition.PHD_STUDENT, jobPosition),
+                () -> Assertions.assertEquals(employee.getLastName(), researcher.getLastName()),
+                () -> Assertions.assertTrue(subjectsTaught.contains(researcher.getSubjectsTaught().get(0))));
     }
 }
