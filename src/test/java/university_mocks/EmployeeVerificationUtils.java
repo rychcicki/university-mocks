@@ -8,6 +8,15 @@ import static university_mocks.PersonVerificationUtils.faker;
 import static university_mocks.PersonVerificationUtils.finalListOfRandomPersons;
 
 public class EmployeeVerificationUtils {
+    public static void main(String[] args){
+        /**     Jak drukuję listę Employees to nie mam pól z klasy Person.
+         *      Jak wywołam je tak jak poniżej, to są.... Jak zrobić, żeby zwracane były wszystkie pola - także te dziedziczone po Person??   */
+        System.out.println(buildListOfFakeEmployees());
+        Employee employee = buildListOfFakeEmployees().get(0);
+        System.out.println("firstName: " + employee.getFirstName() + ", lastName: " +       employee.getLastName() + ", address: " + employee.getAddress());
+    }
+
+    /**   Jak zrobić, żeby pola finalne były rzeczywiście finalne?? Singleton zwraca instancję klasy, więc nie o to chodzi.../       */
     public static final List<Employee> finalListOfEmployees = buildListOfFakeEmployees();
 
     public static List<Employee> buildListOfFakeEmployees() {
@@ -33,6 +42,7 @@ public class EmployeeVerificationUtils {
             employee.setJobPosition(JobPosition.RESEARCHER); // jak tutaj zrobić losowo??
             employee.setDateOfEmployment(LocalDate.now());
             employee.setEmployed(true);
+            listOfEmployees.add(employee);
         }
         return listOfEmployees;
     }

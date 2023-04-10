@@ -24,6 +24,7 @@ class ResearcherTest {
 
     @Test
     public void shouldReturnTrueWhenResearcherIsFired() {
+        System.out.println(finalListOfEmployees);
         Subject subject = buildSubjects();
         List<Researcher> staff = new ArrayList<>();
         staff.add(researcher1);
