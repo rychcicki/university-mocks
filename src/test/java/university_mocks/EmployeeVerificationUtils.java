@@ -1,5 +1,7 @@
 package university_mocks;
 
+import lombok.Getter;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,18 +10,27 @@ import static university_mocks.PersonVerificationUtils.faker;
 import static university_mocks.PersonVerificationUtils.finalListOfRandomPersons;
 
 public class EmployeeVerificationUtils {
-    public static void main(String[] args){
-        /**     Jak drukuję listę Employees to nie mam pól z klasy Person.
-         *      Jak wywołam je tak jak poniżej, to są.... Jak zrobić, żeby zwracane były wszystkie pola - także te dziedziczone po Person??   */
-        System.out.println(buildListOfFakeEmployees());
-        Employee employee = buildListOfFakeEmployees().get(0);
-        System.out.println("firstName: " + employee.getFirstName() + ", lastName: " +       employee.getLastName() + ", address: " + employee.getAddress());
+    private static EmployeeVerificationUtils instance = null;
+
+    private EmployeeVerificationUtils(List<Employee> employees) {
+        if (instance != null) {
+            throw new RuntimeException("Not allowed. Please use getInstance() method");
+        }
+        this.finalListOfEmployees = employees;
     }
 
-    /**   Jak zrobić, żeby pola finalne były rzeczywiście finalne?? Singleton zwraca instancję klasy, więc nie o to chodzi.../       */
-    public static final List<Employee> finalListOfEmployees = buildListOfFakeEmployees();
+    public static EmployeeVerificationUtils getInstance() {
+        if (instance == null) {
+            instance = new EmployeeVerificationUtils(buildListOfFakeEmployees());
+        }
+        return instance;
+    }
 
-    public static List<Employee> buildListOfFakeEmployees() {
+    @Getter
+    private final List<Employee> finalListOfEmployees;
+    private final Integer a = 5;
+
+    private static List<Employee> buildListOfFakeEmployees() {
         List<Person> listOfRandomPersons = new ArrayList<>(finalListOfRandomPersons);
         List<Employee> listOfEmployees = new ArrayList<>();
 

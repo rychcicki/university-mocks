@@ -6,12 +6,11 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static university_mocks.EmployeeVerificationUtils.finalListOfEmployees;
-
 class ResearcherTest {
-    private final Researcher researcher1 = ResearcherVerificationUtils.buildListOfFakeEResearchers().get(0);
-    private final Researcher researcher2 = ResearcherVerificationUtils.buildListOfFakeEResearchers().get(0);
-
+    private final ResearcherVerificationUtils researcherVerificationUtils = new ResearcherVerificationUtils();
+    List<Researcher> researchers = researcherVerificationUtils.buildListOfFakeEResearchers();
+    private final Researcher researcher2 = researchers.get(1);
+    private final Researcher researcher1 = researchers.get(0);
     @Test
     public void shouldReturnListOfTaughtSubjects() {
         //given
@@ -24,7 +23,6 @@ class ResearcherTest {
 
     @Test
     public void shouldReturnTrueWhenResearcherIsFired() {
-        System.out.println(finalListOfEmployees);
         Subject subject = buildSubjects();
         List<Researcher> staff = new ArrayList<>();
         staff.add(researcher1);
@@ -51,13 +49,7 @@ class ResearcherTest {
 
     @Test
     public void shouldReturnFalseIfResearcherWasDeletedFromFaculty() {
-        //given
-//        Employee employee = VerificationUtils.buildEmployee("Andrzej", "Tomaszewski", "Warszawa", 10000, JobPosition.RESEARCHER);
-        Employee employee = finalListOfEmployees.get(0);
-//        List<String> subjectsForResearcher = new ArrayList<>();
-//        subjectsForResearcher.add("Statistics");
-//        subjectsForResearcher.add("Algebra");
-//        Researcher researcher = buildResearcherFromEmployee(employee, subjectsForResearcher);
+
         Faculty faculty = VerificationUtils.buildFacultyOfMathematics("Warszawa");
         List<Researcher> staff = faculty.getStaff();
         //when

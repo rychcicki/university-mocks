@@ -6,7 +6,8 @@ import java.util.List;
 import static university_mocks.PersonVerificationUtils.faker;
 
 public class VerificationUtils {
-    private static final List<Researcher> finalListOfResearcher = ResearcherVerificationUtils.finalListOfResearcher;
+    private final ResearcherVerificationUtils researcherVerificationUtils = new ResearcherVerificationUtils();
+    private final List<Researcher> finalListOfResearcher = researcherVerificationUtils.buildListOfFakeEResearchers();
     private final List<String> subjects = List.of("Statistics", "Algebra", "Algorithms", "Economics", "Mathematics for Computer Science", "Data Analysis",
             "Programming", "Software Engineering", "Modelling", "Network Technologies");
 

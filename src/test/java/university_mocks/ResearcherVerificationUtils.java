@@ -1,16 +1,21 @@
 package university_mocks;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import static university_mocks.EmployeeVerificationUtils.getInstance;
 import static university_mocks.PersonVerificationUtils.faker;
 
 
 public class ResearcherVerificationUtils {
-    public static final List<Researcher> finalListOfResearcher =  buildListOfFakeEResearchers();
 
-    public static List<Researcher> buildListOfFakeEResearchers() {
-        List<Employee> listOfEmployees = EmployeeVerificationUtils.buildListOfFakeEmployees();
+    @Getter
+    private final EmployeeVerificationUtils employeeVerificationUtils = getInstance();
+
+    public List<Researcher> buildListOfFakeEResearchers() {
+        List<Employee> listOfEmployees = employeeVerificationUtils.getFinalListOfEmployees();
         List<Researcher> listOfResearchers = new ArrayList<>();
         for (Employee employee : listOfEmployees) {
             Researcher researcher = new Researcher();
@@ -24,7 +29,7 @@ public class ResearcherVerificationUtils {
         return listOfResearchers;
     }
 
-    private static List<String> makeListOfFakeSubjectsTaught(){
+    private List<String> makeListOfFakeSubjectsTaught() {
         List<String> subjectsTaught = new ArrayList<>();
         subjectsTaught.add("Math");
         for (int i = 0; i < 4; i++) {
