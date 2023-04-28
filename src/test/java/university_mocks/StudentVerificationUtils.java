@@ -66,12 +66,11 @@ public class StudentVerificationUtils {
         return grades;
     }
 
+    // okazało się, że to dlatego test nie działał — wcześniej lista zawsze spełniła warunek wyrzucenia studenta z uczelni
     private static List<String> makeListOfSubjectsForConditionalExam() {
         List<String> subjectsForConditionalExam = new ArrayList<>();
-        subjectsForConditionalExam.add("Statistics");
-        subjectsForConditionalExam.add("Algebra");
-        subjectsForConditionalExam.add("Algorithms");
-        for (int i = 0; i < 3; i++) {
+//        int limit =  faker.number().numberBetween(0,6);
+        for (int i = 0; i < 4; i++) {   // 'i < limit' for random conditional exams' list
             subjectsForConditionalExam.add(faker.educator().course());
         }
         return subjectsForConditionalExam;
