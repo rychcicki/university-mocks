@@ -14,7 +14,7 @@ import java.util.Random;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@ToString(callSuper = true)
 public class Student extends Person {
     private int indexNumber;
     private String course;
@@ -35,7 +35,6 @@ public class Student extends Person {
     }
 
     public Employee studentToEmployeePromotion(Student student) {
-        //similar to buildEmployee() in VerificationUtils class;
         Employee employee = new Employee();
         employee.setFirstName(student.getFirstName());
         employee.setLastName(student.getLastName());
