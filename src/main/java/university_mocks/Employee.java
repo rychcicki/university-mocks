@@ -1,9 +1,6 @@
 package university_mocks;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -17,7 +14,9 @@ public class Employee extends Person {
     private LocalDate dateOfEmployment;
     private boolean isEmployed;
 
-    public Employee(String firstName, String lastName, String address, double salary, JobPosition jobPosition, LocalDate dateOfEmployment, boolean isEmployed) {
+    @Builder
+    public Employee(String firstName, String lastName, String address, double salary, JobPosition jobPosition,
+                    LocalDate dateOfEmployment, boolean isEmployed) {
         super(firstName, lastName, address);
         this.salary = salary;
         this.jobPosition = jobPosition;

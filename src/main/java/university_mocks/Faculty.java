@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-@ToString()
+@ToString
 public class Faculty {
     private String name;
     private List<String> studyCourses;

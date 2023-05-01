@@ -13,6 +13,7 @@ public class Researcher extends Employee {
     private String degree;
     private List<String> subjectsTaught;
 
+    @Builder
     public Researcher(String firstName, String lastName, String address, String degree, List<String> subjectsTaught) {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -1,9 +1,6 @@
 package university_mocks;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,6 +20,7 @@ public class Student extends Person {
     private Map<String, Double> subjectsAndGrades;
     private List<String> subjectsForConditionalExam;
 
+    @Builder
     public Student(String firstName, String lastName, String address, int indexNumber, String course, int year, int semester,
                    Map<String, Double> subjectsAndGrades, List<String> subjectsForConditionalExam) {
         super(firstName, lastName, address);

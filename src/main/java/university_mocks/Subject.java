@@ -10,5 +10,5 @@ import java.util.List;
 public class Subject {
     private String nameOfSubject;
     private List<Researcher> researchersWhoTeachTheSubjects;
-    private int ECTS_PointsForSubject;
+    private int ectsPointsForSubject;
 }
