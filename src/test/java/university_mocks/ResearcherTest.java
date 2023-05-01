@@ -16,10 +16,6 @@ class ResearcherTest {
     List<Researcher> researchers = researcherVerificationUtils.buildListOfFakeResearchers();
     private final Researcher researcher2 = researchers.get(3);
     private final Researcher researcher1 = researchers.get(1);
-    /**
-     * Dlaczego tutaj mockujemy klasę, a nie interfejs SubjectRepository? Czy w ogóle ma to znaczenie w tym przypadku? Działa zarówno z klasą, jak i interfejsem.
-     * Rozumiem, że nie powinniśmy stosować .thenCallRealMethod(), nie tylko dlatego, że dla interfejsu nie zadziała
-     */
     private final SubjectService subjectService = mock(SubjectService.class);
     private final ResearcherService researcherService = mock(ResearcherService.class);
     private final VerificationUtils verificationUtils = new VerificationUtils();

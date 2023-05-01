@@ -13,28 +13,30 @@ public class StudentVerificationUtils {
     private static List<Student> buildListOfFakeStudents() {
         List<Person> listOfPersons = PersonVerificationUtils.finalListOfRandomPersons;
         List<Student> listOfStudents = new ArrayList<>();
-        Student myStudent = new Student();
-        myStudent.setFirstName("Marcin ");
-        myStudent.setLastName("Kowalski");
-        myStudent.setAddress("Wiedeń");
-        myStudent.setIndexNumber(254);
-        myStudent.setCourse("Math");
-        myStudent.setYear(2);
-        myStudent.setSemester(4);
-        myStudent.setSubjectsAndGrades(makeMapOfSubjectsAndGrades(makeListOfSubjects(), makeListOfGrades()));
-        myStudent.setSubjectsForConditionalExam(makeListOfSubjectsForConditionalExam());
+        Student myStudent = Student.builder()
+                .firstName("Marcin")
+                .lastName("Kowalski")
+                .address("Wiedeń")
+                .indexNumber(254)
+                .course("Math")
+                .year(2)
+                .semester(4)
+                .subjectsAndGrades(makeMapOfSubjectsAndGrades(makeListOfSubjects(), makeListOfGrades()))
+                .subjectsForConditionalExam(makeListOfSubjectsForConditionalExam())
+                .build();
         listOfStudents.add(myStudent);
         for (Person person : listOfPersons) {
-            Student student = new Student();
-            student.setFirstName(person.getFirstName());
-            student.setLastName(person.getLastName());
-            student.setAddress(person.getAddress());
-            student.setIndexNumber(faker.number().numberBetween(1, 3000));
-            student.setCourse(faker.educator().course());
-            student.setYear(faker.number().numberBetween(1, 5));
-            student.setSemester(faker.number().numberBetween(1, 10));
-            student.setSubjectsAndGrades(makeMapOfSubjectsAndGrades(makeListOfSubjects(), makeListOfGrades()));
-            student.setSubjectsForConditionalExam(makeListOfSubjectsForConditionalExam());
+            Student student = Student.builder()
+                    .firstName(person.getFirstName())
+                    .lastName(person.getLastName())
+                    .address(person.getAddress())
+                    .indexNumber(faker.number().numberBetween(1, 3000))
+                    .course(faker.educator().course())
+                    .year(faker.number().numberBetween(1, 5))
+                    .semester(faker.number().numberBetween(1, 10))
+                    .subjectsAndGrades(makeMapOfSubjectsAndGrades(makeListOfSubjects(), makeListOfGrades()))
+                    .subjectsForConditionalExam(makeListOfSubjectsForConditionalExam())
+                    .build();
             listOfStudents.add(student);
         }
         return listOfStudents;

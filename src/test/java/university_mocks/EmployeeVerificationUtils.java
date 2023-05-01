@@ -34,25 +34,27 @@ public class EmployeeVerificationUtils {
         List<Person> listOfRandomPersons = new ArrayList<>(finalListOfRandomPersons);
         List<Employee> listOfEmployees = new ArrayList<>();
 
-        Employee myEmployee = new Employee();
-        myEmployee.setFirstName("Andrzej");
-        myEmployee.setLastName("Sienkiewicz");
-        myEmployee.setAddress("Kraków");
-        myEmployee.setSalary(5200);
-        myEmployee.setJobPosition(JobPosition.OTHER);
-        myEmployee.setDateOfEmployment(LocalDate.now());
-        myEmployee.setEmployed(true);
+        Employee myEmployee = Employee.builder()
+                .firstName("Andrzej")
+                .lastName("Sienkiewicz")
+                .address("Kraków")
+                .salary(5200)
+                .jobPosition(JobPosition.OTHER)
+                .dateOfEmployment(LocalDate.now())
+                .isEmployed(true)
+                .build();
         listOfEmployees.add(myEmployee);
 
         for (Person person : listOfRandomPersons) {
-            Employee employee = new Employee();
-            employee.setFirstName(person.getFirstName());
-            employee.setLastName(person.getLastName());
-            employee.setAddress(person.getAddress());
-            employee.setSalary(faker.number().numberBetween(3500, 17000));
-            employee.setJobPosition(JobPosition.RESEARCHER); // jak tutaj zrobić losowo??
-            employee.setDateOfEmployment(LocalDate.now());
-            employee.setEmployed(true);
+            Employee employee = Employee.builder()
+                    .firstName(person.getFirstName())
+                    .lastName(person.getLastName())
+                    .address(person.getAddress())
+                    .salary(faker.number().numberBetween(3500, 17000))
+                    .jobPosition(JobPosition.RESEARCHER)
+                    .dateOfEmployment(LocalDate.now())
+                    .isEmployed(true)
+                    .build();
             listOfEmployees.add(employee);
         }
         return listOfEmployees;

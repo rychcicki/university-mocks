@@ -24,10 +24,10 @@ class StudentTest {
         student1.setSubjectsForConditionalExam(Collections.emptyList());
         Student student2 = listOfStudents.get(1);
         //when
-        List<Student> listOfStudents1 = student1.checkSubjectsForConditionalExam(listOfStudents, student1);
-        List<Student> listOfStudents2 = student2.checkSubjectsForConditionalExam(listOfStudents, student2);
-        boolean check1 = listOfStudents1.contains(student1);
-        boolean check2 = listOfStudents2.contains(student2);
+        List<Student> notFiredStudents1 = student1.checkSubjectsForConditionalExam(listOfStudents, student1);
+        List<Student> notFiredStudents2 = student2.checkSubjectsForConditionalExam(listOfStudents, student2);
+        boolean check1 = notFiredStudents1.contains(student1);
+        boolean check2 = notFiredStudents2.contains(student2);
         //then
         Assertions.assertAll(
                 () -> Assertions.assertTrue(check1),
@@ -39,7 +39,6 @@ class StudentTest {
     public void shouldReturnValidResearcherWhenStudentPromotedToPhDStudent() {
         //given
         when(studentService.addAll()).thenReturn(listOfStudents);
-        /**     Już pytałem, ale czy naprawdę używając Mockito w biznesie nie wykorzystuje się wywołań rzeczywistych metod?  */
         SubjectRepository subjectRepository = mock(SubjectRepository.class);
         when(subjectRepository.isTrue()).thenCallRealMethod();
         /**     Która z dwóch poniższych linii jest poprawna? Wywołanie stubowanej metody, czy pobranie wartości z pola w klasie?  */

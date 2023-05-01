@@ -1,5 +1,6 @@
 package university_mocks;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -13,20 +14,33 @@ public class ResearcherVerificationUtils {
     @Getter
     private final EmployeeVerificationUtils employeeVerificationUtils = getInstance();
 
+    @Builder
     public List<Researcher> buildListOfFakeResearchers() {
         List<Employee> listOfEmployees = employeeVerificationUtils.getFinalListOfEmployees();
         List<Researcher> listOfResearchers = new ArrayList<>();
         for (Employee employee : listOfEmployees) {
-            Researcher researcher = new Researcher();
+            Researcher researcher = Researcher.builder()
+                    .firstName(employee.getFirstName())
+                    .lastName(employee.getLastName())
+                    .address(employee.getAddress())
+                    .degree("PhD")
+                    .subjectsTaught(makeListOfFakeSubjectsTaught())
+                    .build();
+            Employee employee1 = Employee.builder()
+                    .salary(faker.number().numberBetween(3000, 25000))
+                    .jobPosition(JobPosition.RESEARCHER)
+                    .dateOfEmployment(LocalDate.now())
+                    .isEmployed(true)
+                    .build();
             researcher.setFirstName(employee.getFirstName());
             researcher.setLastName(employee.getLastName());
             researcher.setAddress(employee.getAddress());
             researcher.setDegree("PhD");
             researcher.setSubjectsTaught(makeListOfFakeSubjectsTaught());
-            researcher.setSalary(faker.number().numberBetween(3000, 25000));
-            researcher.setJobPosition(JobPosition.RESEARCHER);
-            researcher.setDateOfEmployment(LocalDate.now());
-            researcher.setEmployed(true);
+            researcher.setSalary(employee1.getSalary());
+            researcher.setJobPosition(employee1.getJobPosition());
+            researcher.setDateOfEmployment(employee1.getDateOfEmployment());
+            researcher.setEmployed(employee1.isEmployed());
             listOfResearchers.add(researcher);
         }
         return listOfResearchers;
