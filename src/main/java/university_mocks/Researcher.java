@@ -1,6 +1,10 @@
 package university_mocks;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 import java.util.Random;
@@ -8,12 +12,11 @@ import java.util.Random;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@SuperBuilder
 public class Researcher extends Employee {
     private String degree;
     private List<String> subjectsTaught;
 
-    @Builder
     public Researcher(String firstName, String lastName, String address, String degree, List<String> subjectsTaught) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,12 +29,10 @@ public class Researcher extends Employee {
         Researcher anotherResearcher = null;
         if (researcher.getSubjectsTaught().size() > 0) {
             anotherResearcher = replaceResearcherByAnotherResearcher(researcher, subject);
-            // other methods
         }
         return anotherResearcher != null;
     }
 
-    // doesn't replace, just return another Researcher
     public Researcher replaceResearcherByAnotherResearcher(Researcher researcher, Subject subject) {
         if (subject.getResearchersWhoTeachTheSubjects().contains(researcher) &&
                 subject.getResearchersWhoTeachTheSubjects().size() > 1) {

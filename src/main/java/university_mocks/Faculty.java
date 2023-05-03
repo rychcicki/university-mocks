@@ -7,8 +7,8 @@ import lombok.ToString;
 import java.util.List;
 
 @Getter
-@AllArgsConstructor
 @ToString
+@AllArgsConstructor
 public class Faculty {
     private String name;
     private List<String> studyCourses;

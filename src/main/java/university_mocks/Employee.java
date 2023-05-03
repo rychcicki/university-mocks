@@ -1,6 +1,10 @@
 package university_mocks;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
@@ -8,16 +12,17 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
+@SuperBuilder
 public class Employee extends Person {
     private double salary;
     private JobPosition jobPosition;
     private LocalDate dateOfEmployment;
     private boolean isEmployed;
 
-    @Builder
+
     public Employee(String firstName, String lastName, String address, double salary, JobPosition jobPosition,
                     LocalDate dateOfEmployment, boolean isEmployed) {
-        super(firstName, lastName, address);
+        super();
         this.salary = salary;
         this.jobPosition = jobPosition;
         this.dateOfEmployment = dateOfEmployment;

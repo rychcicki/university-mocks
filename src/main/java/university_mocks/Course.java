@@ -1,6 +1,5 @@
 package university_mocks;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -8,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 @Getter
-@AllArgsConstructor
 public class Course {
     private String name;
     private Map<Integer, String> yearsAndSubjects;

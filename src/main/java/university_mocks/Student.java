@@ -1,6 +1,9 @@
 package university_mocks;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,8 +13,8 @@ import java.util.Random;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString(callSuper = true)
+@SuperBuilder
 public class Student extends Person {
     private int indexNumber;
     private String course;
@@ -19,11 +22,11 @@ public class Student extends Person {
     private int semester;
     private Map<String, Double> subjectsAndGrades;
     private List<String> subjectsForConditionalExam;
+    private final int maxCountOfSubjectsForConditionalExam = 3;
 
-    @Builder
     public Student(String firstName, String lastName, String address, int indexNumber, String course, int year, int semester,
                    Map<String, Double> subjectsAndGrades, List<String> subjectsForConditionalExam) {
-        super(firstName, lastName, address);
+        super();
         this.indexNumber = indexNumber;
         this.course = course;
         this.year = year;
@@ -51,10 +54,10 @@ public class Student extends Person {
 
     public List<Student> checkSubjectsForConditionalExam(List<Student> listOfStudents, Student student) {
         int countOfSubjectsForConditionalExam = student.getSubjectsForConditionalExam().size();
-        if (countOfSubjectsForConditionalExam > 3) {
-            List<Student> newListOfStudents = new ArrayList<>(listOfStudents);
-            newListOfStudents.remove(student);
-            return newListOfStudents;
+        if (countOfSubjectsForConditionalExam > maxCountOfSubjectsForConditionalExam) {
+            List<Student> studentsWithoutConditionalExam = new ArrayList<>(listOfStudents);
+            studentsWithoutConditionalExam.remove(student);
+            return studentsWithoutConditionalExam;
         }
         return listOfStudents;
     }
