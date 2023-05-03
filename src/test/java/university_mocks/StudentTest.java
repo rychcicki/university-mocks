@@ -41,9 +41,7 @@ class StudentTest {
         when(studentService.addAll()).thenReturn(listOfStudents);
         SubjectRepository subjectRepository = mock(SubjectRepository.class);
         when(subjectRepository.isTrue()).thenCallRealMethod();
-        /**     Która z dwóch poniższych linii jest poprawna? Wywołanie stubowanej metody, czy pobranie wartości z pola w klasie?  */
         Student student = studentService.addAll().get(0);
-        Student student1 = this.listOfStudents.get(0);
         when(subjectService.addAllStringSubjects()).thenReturn(makeListOfSubjects());
         List<String> subjectsTaught = subjectService.addAllStringSubjects();
         //when
