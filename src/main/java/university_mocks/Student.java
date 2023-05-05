@@ -24,17 +24,6 @@ public class Student extends Person {
     private List<String> subjectsForConditionalExam;
     private final int maxCountOfSubjectsForConditionalExam = 3;
 
-    public Student(String firstName, String lastName, String address, int indexNumber, String course, int year, int semester,
-                   Map<String, Double> subjectsAndGrades, List<String> subjectsForConditionalExam) {
-        super();
-        this.indexNumber = indexNumber;
-        this.course = course;
-        this.year = year;
-        this.semester = semester;
-        this.subjectsAndGrades = subjectsAndGrades;
-        this.subjectsForConditionalExam = subjectsForConditionalExam;
-    }
-
     public Employee studentToEmployeePromotion(Student student) {
         Employee employee = new Employee();
         employee.setFirstName(student.getFirstName());
@@ -49,7 +38,13 @@ public class Student extends Person {
 
     public Researcher studentToPhDStudentPromotion(Employee employee, List<String> subjectsTaught) {
         int index = new Random().nextInt(0, subjectsTaught.size());
-        return new Researcher(employee.getFirstName(), employee.getLastName(), employee.getAddress(), "MSc", List.of(subjectsTaught.get(index)));
+        return Researcher.builder()
+                .firstName(employee.getFirstName())
+                .lastName(employee.getLastName())
+                .address(employee.getAddress())
+                .degree("MSc")
+                .subjectsTaught(List.of(subjectsTaught.get(index)))
+                .build();
     }
 
     public List<Student> checkSubjectsForConditionalExam(List<Student> listOfStudents, Student student) {

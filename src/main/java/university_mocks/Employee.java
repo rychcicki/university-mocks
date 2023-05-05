@@ -18,14 +18,4 @@ public class Employee extends Person {
     private JobPosition jobPosition;
     private LocalDate dateOfEmployment;
     private boolean isEmployed;
-
-
-    public Employee(String firstName, String lastName, String address, double salary, JobPosition jobPosition,
-                    LocalDate dateOfEmployment, boolean isEmployed) {
-        super();
-        this.salary = salary;
-        this.jobPosition = jobPosition;
-        this.dateOfEmployment = dateOfEmployment;
-        this.isEmployed = isEmployed;
-    }
 }

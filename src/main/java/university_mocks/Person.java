@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 public class Person {
-    String firstName;
-    String lastName;
-    String address;
+    private String firstName;
+    private String lastName;
+    private String address;
 }

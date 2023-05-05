@@ -1,9 +1,6 @@
 package university_mocks;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -16,14 +13,6 @@ import java.util.Random;
 public class Researcher extends Employee {
     private String degree;
     private List<String> subjectsTaught;
-
-    public Researcher(String firstName, String lastName, String address, String degree, List<String> subjectsTaught) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.degree = degree;
-        this.subjectsTaught = subjectsTaught;
-    }
 
     public boolean checkResearcherMayBeFired(@NonNull Researcher researcher, Subject subject) {
         Researcher anotherResearcher = null;
