@@ -19,28 +19,23 @@ public class ResearcherVerificationUtils {
         List<Employee> listOfEmployees = employeeVerificationUtils.getFinalListOfEmployees();
         List<Researcher> listOfResearchers = new ArrayList<>();
         for (Employee employee : listOfEmployees) {
-            Researcher researcher = Researcher.builder()
-                    .firstName(employee.getFirstName())
-                    .lastName(employee.getLastName())
-                    .address(employee.getAddress())
-                    .degree("PhD")
-                    .subjectsTaught(makeListOfFakeSubjectsTaught())
-                    .build();
             Employee employee1 = Employee.builder()
                     .salary(faker.number().numberBetween(3000, 25000))
                     .jobPosition(JobPosition.RESEARCHER)
                     .dateOfEmployment(LocalDate.now())
                     .isEmployed(true)
                     .build();
-            researcher.setFirstName(employee.getFirstName());
-            researcher.setLastName(employee.getLastName());
-            researcher.setAddress(employee.getAddress());
-            researcher.setDegree("PhD");
-            researcher.setSubjectsTaught(makeListOfFakeSubjectsTaught());
-            researcher.setSalary(employee1.getSalary());
-            researcher.setJobPosition(employee1.getJobPosition());
-            researcher.setDateOfEmployment(employee1.getDateOfEmployment());
-            researcher.setEmployed(employee1.isEmployed());
+            Researcher researcher = Researcher.builder()
+                    .firstName(employee.getFirstName())
+                    .lastName(employee.getLastName())
+                    .address(employee.getAddress())
+                    .degree("PhD")
+                    .subjectsTaught(makeListOfFakeSubjectsTaught())
+                    .salary(employee1.getSalary())
+                    .jobPosition(employee1.getJobPosition())
+                    .dateOfEmployment(employee1.getDateOfEmployment())
+                    .isEmployed(employee1.isEmployed())
+                    .build();
             listOfResearchers.add(researcher);
         }
         return listOfResearchers;

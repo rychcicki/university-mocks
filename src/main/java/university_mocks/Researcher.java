@@ -14,21 +14,18 @@ public class Researcher extends Employee {
     private String degree;
     private List<String> subjectsTaught;
 
-    public boolean checkResearcherMayBeFired(@NonNull Researcher researcher, Subject subject) {
+    public boolean checkResearcherMayBeFired(@NonNull Researcher researcher, List<Researcher> researchersWhoTeachThisSubject) {
         Researcher anotherResearcher = null;
-        if (researcher.getSubjectsTaught().size() > 0) {
-            anotherResearcher = replaceResearcherByAnotherResearcher(researcher, subject);
+        if (!researcher.getSubjectsTaught().isEmpty()) {
+            anotherResearcher = replaceResearcherByAnotherResearcher(researcher, researchersWhoTeachThisSubject);
         }
         return anotherResearcher != null;
     }
 
-    public Researcher replaceResearcherByAnotherResearcher(Researcher researcher, Subject subject) {
-        if (subject.getResearchersWhoTeachTheSubjects().contains(researcher) &&
-                subject.getResearchersWhoTeachTheSubjects().size() > 1) {
-            subject.getResearchersWhoTeachTheSubjects().remove(researcher);
-        }
-        return subject.getResearchersWhoTeachTheSubjects()
-                .get(new Random().nextInt(0, subject.getResearchersWhoTeachTheSubjects().size()));
+    public Researcher replaceResearcherByAnotherResearcher(Researcher researcher, List<Researcher> researchersWhoTeachDesiredSubject) {
+        researchersWhoTeachDesiredSubject.remove(researcher);
+        return researchersWhoTeachDesiredSubject
+                .get(new Random().nextInt(0, researchersWhoTeachDesiredSubject.size()));
     }
 
     public List<Researcher> deleteResearcherFromStaffAndSetFalseAsEmployee(Researcher researcher, List<Researcher> staff) {

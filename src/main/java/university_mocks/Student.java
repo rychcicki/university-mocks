@@ -25,15 +25,14 @@ public class Student extends Person {
     private final int maxCountOfSubjectsForConditionalExam = 3;
 
     public Employee studentToEmployeePromotion(Student student) {
-        Employee employee = new Employee();
-        employee.setFirstName(student.getFirstName());
-        employee.setLastName(student.getLastName());
-        employee.setAddress(student.getAddress());
-        employee.setSalary(3800);
-        employee.setJobPosition(JobPosition.PHD_STUDENT);
-        employee.setDateOfEmployment(LocalDate.now());
-        employee.setEmployed(true);
-        return employee;
+        return Employee.builder()
+                .firstName(student.getFirstName())
+                .lastName(student.getLastName())
+                .address(student.getAddress())
+                .salary(3800)
+                .jobPosition(JobPosition.PHD_STUDENT)
+                .dateOfEmployment(LocalDate.now())
+                .isEmployed(true).build();
     }
 
     public Researcher studentToPhDStudentPromotion(Employee employee, List<String> subjectsTaught) {

@@ -5,10 +5,11 @@ import lombok.Getter;
 
 import java.util.List;
 
-@Getter
 @AllArgsConstructor
 public class Subject {
     private String nameOfSubject;
+    @Getter
     private List<Researcher> researchersWhoTeachTheSubjects;
+    @Getter
     private int ectsPointsForSubject;
 }

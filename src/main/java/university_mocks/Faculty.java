@@ -6,12 +6,13 @@ import lombok.ToString;
 
 import java.util.List;
 
-@Getter
 @ToString
 @AllArgsConstructor
 public class Faculty {
     private String name;
     private List<String> studyCourses;
+    @Getter
     private String address;
+    @Getter
     private List<Researcher> staff;
 }

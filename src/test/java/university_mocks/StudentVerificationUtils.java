@@ -8,7 +8,7 @@ import java.util.Map;
 import static university_mocks.PersonVerificationUtils.faker;
 
 public class StudentVerificationUtils {
-    public static final List<Student> finalListOfStudents = buildListOfFakeStudents();
+    static final List<Student> finalListOfStudents = buildListOfFakeStudents();
 
     private static List<Student> buildListOfFakeStudents() {
         List<Person> listOfPersons = PersonVerificationUtils.finalListOfRandomPersons;
@@ -71,7 +71,6 @@ public class StudentVerificationUtils {
     // okazało się, że to dlatego test nie działał — wcześniej lista zawsze spełniła warunek wyrzucenia studenta z uczelni
     private static List<String> makeListOfSubjectsForConditionalExam() {
         List<String> subjectsForConditionalExam = new ArrayList<>();
-//        int limit =  faker.number().numberBetween(0,6);
         for (int i = 0; i < 4; i++) {   // 'i < limit' for random conditional exams' list
             subjectsForConditionalExam.add(faker.educator().course());
         }

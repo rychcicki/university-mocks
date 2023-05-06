@@ -9,8 +9,8 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @SuperBuilder
+@NoArgsConstructor
 public class Person {
     private String firstName;
     private String lastName;

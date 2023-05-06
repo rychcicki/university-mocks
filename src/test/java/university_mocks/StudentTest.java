@@ -11,9 +11,9 @@ import static university_mocks.StudentVerificationUtils.finalListOfStudents;
 import static university_mocks.StudentVerificationUtils.makeListOfSubjects;
 
 class StudentTest {
-    List<Student> listOfStudents = finalListOfStudents;
-    StudentService studentService = mock(StudentService.class, RETURNS_SMART_NULLS);
-    SubjectService subjectService = mock(SubjectService.class, RETURNS_SMART_NULLS);
+    private final List<Student> listOfStudents = finalListOfStudents;
+    private final StudentService studentService = mock(StudentService.class, RETURNS_SMART_NULLS);
+    private final SubjectService subjectService = mock(SubjectService.class, RETURNS_SMART_NULLS);
 
     @Test
     public void shouldReturnFalseWhenStudentIsFired() {
